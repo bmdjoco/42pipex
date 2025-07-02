@@ -6,36 +6,65 @@
 #    By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 10:50:33 by bdjoco            #+#    #+#              #
-#    Updated: 2025/06/18 14:52:12 by bdjoco           ###   ########.fr        #
+#    Updated: 2025/07/02 16:09:19 by bdjoco           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRC = ./src/pipex.c
-
-OBJ = $(SRC:.c=.o)
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+
+CFLAGS = -Wall -Wextra -Werror
+
+LIBFT = lib/libft/
+FT_PRINTF = lib/ft_printf/
+
 AR = ar rcs
 RM = rm -f
+
+SRC = src/pipex.c \
+		src/utils.c
+OBJ = $(SRC:.c=.o)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I .
 
-all : $(NAME)
-	@echo "\e[1m\e[32mTout est compilé\e[0m ​👍​"
+LIBS = $(LIBFT)libft.a $(FT_PRINTF)libftprintf.a
 
-$(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+MAKE = make -s -C
+
+BOLD = \e[1m
+GREEN = \e[32m
+PURPLE = \e[35m
+RESET = \e[0m
+
+all : $(NAME)
+
+$(NAME) : $(OBJ) $(LIBS)
+	@echo "$(BOLD)$(PURPLE)$(NAME)$(RESET)$(GREEN) est compilé$(RESET) ​🔰​"
+	@$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT) -lft -L$(FT_PRINTF) -lftprintf -o $(NAME) -no-pie
+
+%.o: %.c so_long.h
+	@echo "Compiling : $(PURPLE)$<$(NC)$(RESET)"
+	@$(CC) $(CFLAGS) -I$(LIBFT) -I$(FT_PRINTF) -c $< -o $@
+
+$(LIBFT)libft.a:
+	@$(MAKE) $(LIBFT)
+
+$(FT_PRINTF)libftprintf.a:
+	@$(MAKE) $(FT_PRINTF)
 
 clean :
 	@$(RM) $(OBJ)
-	@echo "\e[32mNettoyage des \e[0m\e[1mfichiers source\e[0m \e[32mterminé\e[0m 🧹"
+	@echo "$(GREEN)Nettoyage des $(RESET)$(BOLD)fichiers source de so_long$(RESET) $(GREEN)terminé$(RESET) 🚮"
+	@$(MAKE) $(LIBFT) clean
+	@$(MAKE) $(FT_PRINTF) clean
 
 fclean : clean
 	@$(RM) $(NAME)
-	@echo "\e[32mNettoyage de \e[0m\e[1mlibftprintf.a\e[0m \e[32mterminé\e[0m 🧹"
+	@echo "$(GREEN)Nettoyage de $(RESET)$(BOLD)so_long.a$(RESET) $(GREEN)terminé$(RESET) 🚮"
+	@$(MAKE) $(LIBFT) fclean
+	@$(MAKE) $(FT_PRINTF) fclean
 
 re : fclean all
 

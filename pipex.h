@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:42:54 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/02 16:08:23 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/04 18:19:45 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # include <stdlib.h>
 # include <ctype.h>
 # include <string.h>
+
+char		**getpathlist(char **envp);
+char		*access_path(char **envp, char *cmd);
 
 void		free_split(char **split);
 

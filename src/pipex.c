@@ -6,14 +6,14 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:42:44 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/02 16:08:44 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/04 13:12:01 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
 /**
- * @brief Prend en parametre une liste de variable de l'en
+ * @brief Prend en parametre une liste de variable de l'environnement
  *
  * @param
  */

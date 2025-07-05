@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:58:30 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/04 18:19:27 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/05 14:56:37 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,32 +43,35 @@ char	**getpathlist(char **envp)
 	return (NULL);
 }
 
-char	*access_path(char **envp, char *cmd)
+char	*access_path(char **path_lst, char *cmd)
 {
 	int	i;
 	char	*tmp;
 	char	*str;
+	char	*res;
 	char	**cmds;
 
-	cmds = ft_split(cmd, ' ');
-	if (!cmds)
-		return (ft_putchar_fd("Error: cmd split failed\n", 2), NULL);
-	if(access(cmds[0], X_OK))
-		return (cmds[0]);
+	if (!(cmds = ft_split(cmd, ' ')))
+		return (ft_putstr_fd("Error: cmd split failed\n", 2), NULL);
+	res = ft_strdup(cmds[0]);
+	if(!access(res, X_OK))
+		return (free_split(cmds), res);
 	i = 0;
-	while (envp[i])
+	while (path_lst[i])
 	{
-		tmp = ft_strjoin(envp[i], "/");
+		tmp = ft_strjoin(path_lst[i], "/");
 		if (!tmp)
-			return (free_split(cmds), ft_putchar_fd("Error: envp and / join failed\n", 2), NULL);
+			return (free_split(cmds), ft_putstr_fd("Error: envp and / join failed\n", 2), NULL);
 		str = ft_strjoin(tmp, cmds[0]);
-		if(!str)
-			return (free_split(cmds), free(tmp), ft_putchar_fd("Error: envp/ and cmd failed\n", 2), NULL);
-		if(access(str, X_OK))
-			return (free_split(cmds), free(tmp), str);
 		free(tmp);
+		if(!str)
+			return (free_split(cmds), ft_putstr_fd("Error: envp/ and cmd join failed\n", 2), NULL);
+		if(!access(str, X_OK))
+			return (free_split(cmds), str);
 		free(str);
 		i++;
 	}
-	return (free_split(cmds), ft_putchar_fd("Error: access path not found\n", 2), NULL);
+	return (free_split(cmds), ft_putstr_fd("Error: access path not found\n", 2), NULL);
 }
+
+

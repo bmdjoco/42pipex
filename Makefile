@@ -6,7 +6,7 @@
 #    By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 10:50:33 by bdjoco            #+#    #+#              #
-#    Updated: 2025/07/02 16:09:19 by bdjoco           ###   ########.fr        #
+#    Updated: 2025/07/05 14:43:49 by bdjoco           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g3
 
 LIBFT = lib/libft/
 FT_PRINTF = lib/ft_printf/
@@ -23,6 +23,7 @@ AR = ar rcs
 RM = rm -f
 
 SRC = src/pipex.c \
+		src/path.c \
 		src/utils.c
 OBJ = $(SRC:.c=.o)
 

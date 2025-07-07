@@ -1,28 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   cmds.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/02 13:42:54 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/07 15:21:42 by bdjoco           ###   ########.fr       */
+/*   Created: 2025/07/07 23:20:20 by bdjoco            #+#    #+#             */
+/*   Updated: 2025/07/07 23:20:30 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex.h"
 
-# include "lib/ft_printf/ft_printf.h"
-# include "lib/libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <ctype.h>
-# include <string.h>
-
-char		**getpathlist(char **envp);
-char		*access_path(char **envp, const char *cmd);
-
-void		free_split(char **split);
-
-#endif

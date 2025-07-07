@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:58:30 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/05 14:56:37 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/07 20:55:41 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
  * et renvoie la liste des paths dans un tableau de chaine de
  * charactere
  *
- * @param envp liste de variable de l'environnement
+ * @param envp liste de variables de l'environnement
  */
 char	**getpathlist(char **envp)
 {
@@ -43,11 +43,18 @@ char	**getpathlist(char **envp)
 	return (NULL);
 }
 
-char	*access_path(char **path_lst, char *cmd)
+/**
+ * @brief Prend en parametre une liste de de path et
+ * une commande pour renvoyer le path avec la commande
+ * ou NULL en cas d'erreur
+ *
+ * @param path_lst liste des path possible
+ * @param cmd commande rechercher
+ */
+char	*access_path(char **path_lst, const char *cmd)
 {
 	int	i;
 	char	*tmp;
-	char	*str;
 	char	*res;
 	char	**cmds;
 
@@ -57,18 +64,19 @@ char	*access_path(char **path_lst, char *cmd)
 	if(!access(res, X_OK))
 		return (free_split(cmds), res);
 	i = 0;
+	free(res);
 	while (path_lst[i])
 	{
 		tmp = ft_strjoin(path_lst[i], "/");
 		if (!tmp)
 			return (free_split(cmds), ft_putstr_fd("Error: envp and / join failed\n", 2), NULL);
-		str = ft_strjoin(tmp, cmds[0]);
+		res = ft_strjoin(tmp, cmds[0]);
 		free(tmp);
-		if(!str)
+		if(!res)
 			return (free_split(cmds), ft_putstr_fd("Error: envp/ and cmd join failed\n", 2), NULL);
-		if(!access(str, X_OK))
-			return (free_split(cmds), str);
-		free(str);
+		if(!access(res, X_OK))
+			return (free_split(cmds), res);
+		free(res);
 		i++;
 	}
 	return (free_split(cmds), ft_putstr_fd("Error: access path not found\n", 2), NULL);

@@ -6,7 +6,7 @@
 #    By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 10:50:33 by bdjoco            #+#    #+#              #
-#    Updated: 2025/07/07 23:20:41 by bdjoco           ###   ########.fr        #
+#    Updated: 2025/07/14 19:57:00 by bdjoco           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,6 +67,9 @@ fclean : clean
 	@echo "$(GREEN)Nettoyage de $(RESET)$(BOLD)so_long.a$(RESET) $(GREEN)terminé$(RESET) 🚮"
 	@$(MAKE) $(LIBFT) fclean
 	@$(MAKE) $(FT_PRINTF) fclean
+
+test : all clean
+	@echo "​⚜️​  ⚜️  ​⚜️  $(BOLD)$(PURPLE)On Cook$(RESET) ⚜️  ​⚜️​​  ⚜️​"
 
 re : fclean all
 

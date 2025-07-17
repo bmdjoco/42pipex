@@ -6,7 +6,7 @@
 #    By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/29 10:50:33 by bdjoco            #+#    #+#              #
-#    Updated: 2025/07/14 19:57:00 by bdjoco           ###   ########.fr        #
+#    Updated: 2025/07/18 00:57:24 by bdjoco           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ RM = rm -f
 
 SRC = src/pipex.c \
 		src/path.c \
-		src/cmds.c \
 		src/utils.c
 OBJ = $(SRC:.c=.o)
 

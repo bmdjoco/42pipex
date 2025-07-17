@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:42:54 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/15 00:40:58 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/18 00:59:50 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@
 # include <string.h>
 # include <fcntl.h>
 
-char		**getpathlist(char **envp);
-char		*access_path(char **envp, const char *cmd);
-void		child_process(char *cmd, char **envp, char **paths);
-int			create_here_doc(char *limiter);
-
 void		free_split(char **split);
+char		**getpathlist(char **envp);
+char		*access_path(char **path_lst, const char *cmd);
 
 #endif

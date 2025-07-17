@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:58:30 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/14 20:49:25 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/18 01:02:29 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ char	*access_path(char **path_lst, const char *cmd)
 	char	*res;
 	char	**cmds;
 
+	res = NULL;
+	cmds = NULL;
 	if (!init_pass(res, cmd, cmds))
 		return (ft_putstr_fd("Error: cmd split failed\n", 2), NULL);
 	if(!access(res, X_OK))

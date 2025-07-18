@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 13:42:44 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/18 01:00:41 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:42:37 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ int main(int ac, char const **av, char **envp)
 		return (ft_putstr_fd("Error: Path error\n", 2), 1);
 	infile = open(av[1], O_RDONLY);
 	if (infile < 0)
-		return (ft_putstr_fd("Error: Open Infile error\n", 2), 1);
+		return (free_split(path), ft_putstr_fd("Error: Open Infile error\n", 2), 1);
 	outfile = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (outfile < 0)
-		return (close(infile), ft_putstr_fd("Error: Open Outfile error\n", 2), 1);
+		return (free_split(path), close(infile), ft_putstr_fd("Error: Open Outfile error\n", 2), 1);
 	exec_pipex(av, path, infile, outfile);
 	return (0);
 }

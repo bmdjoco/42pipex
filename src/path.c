@@ -6,7 +6,7 @@
 /*   By: bdjoco <bdjoco@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 17:58:30 by bdjoco            #+#    #+#             */
-/*   Updated: 2025/07/18 01:02:29 by bdjoco           ###   ########.fr       */
+/*   Updated: 2025/07/18 11:28:24 by bdjoco           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	**getpathlist(char **envp)
 	char	**path;
 
 	i = 0;
+	sub = NULL;
+	path = NULL;
 	while (envp[i])
 	{
 		if (ft_strncmp("PATH=", envp[i], 5) == 0)
@@ -40,19 +42,7 @@ char	**getpathlist(char **envp)
 		}
 		i++;
 	}
-	return (NULL);
-}
-
-static int	init_pass(char *res, const char *cmd, char **cmds)
-{
-	if (!(cmds = ft_split(cmd, ' ')))
-		return (ft_putstr_fd("Error: cmd split failed\n",
-			2), 0);
-	res = ft_strdup(cmds[0]);
-	if (!res)
-		return (free_split(cmds), ft_putstr_fd("Error: cmd split failed\n",
-			2), 0);
-	return (1);
+	return (free_split(path), free(sub), NULL);
 }
 
 /**
@@ -72,8 +62,13 @@ char	*access_path(char **path_lst, const char *cmd)
 
 	res = NULL;
 	cmds = NULL;
-	if (!init_pass(res, cmd, cmds))
-		return (ft_putstr_fd("Error: cmd split failed\n", 2), NULL);
+	if (!(cmds = ft_split(cmd, ' ')))
+		return (ft_putstr_fd("Error: cmd split failed\n",
+			2), NULL);
+	res = ft_strdup(cmds[0]);
+	if (!res)
+		return (free_split(cmds), ft_putstr_fd("Error: cmd split failed\n",
+			2), NULL);
 	if(!access(res, X_OK))
 		return (free_split(cmds), res);
 	free(res);

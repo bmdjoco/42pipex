@@ -40,3 +40,5 @@ free, etc.).
 • Votre programme ne doit pas avoir de fuites de mémoire.
 • Si vous avez le moindre doute, référez-vous à la commande shell :
 < file1 cmd1 | cmd2 > file2
+
+valgrind --leak-check=full --track-origins=yes ./pipex test.txt "cat" "grep pipex" outfile
